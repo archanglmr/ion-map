@@ -8,7 +8,7 @@ import {
   //Marker
 } from '@ionic-native/google-maps';
 import { Component, OnInit } from '@angular/core';
-import * as MAP_STYLES from '../../map/maps.json';
+import { MAP_STYLES } from '../maps/maps';
 
 
 @Component({
@@ -20,6 +20,8 @@ export class NativeMapComponent implements OnInit {
     (new Date()).getTime().toString() +
     '_' +
     Math.floor(Math.random() * 100000).toString();
+  latitude: number = 41.4992096;
+  longitude: number = -81.6862375;
 
   map: GoogleMap;
 
@@ -29,8 +31,8 @@ export class NativeMapComponent implements OnInit {
     },
     camera: {
       target: {
-        lat: 41.4992096,
-        lng: -81.6862375
+        lat: this.latitude,
+        lng: this.longitude
       },
       zoom: 18
     },
@@ -56,22 +58,22 @@ export class NativeMapComponent implements OnInit {
         console.log('Native map is ready!');
 
         // Now you can use all methods safely.
-        //this.map.addMarker({
-        //  title: 'Ionic',
-        //  //icon: 'red',
-        //  //animation: 'DROP',
-        //  snippet: "This plugin is awesome!",
-        //  position: {
-        //    lat: 41.4992096,
-        //    lng: -81.6862375
-        //  }
-        //})
-        //  .then(marker => {
-        //    marker.on(GoogleMapsEvent.MARKER_CLICK)
-        //      .subscribe(() => {
-        //        alert('clicked');
-        //      });
-        //  });
+        this.map.addMarker({
+          title: 'Ionic',
+          //icon: 'red',
+          //animation: 'DROP',
+          snippet: "This plugin is awesome!",
+          position: {
+            lat: this.latitude,
+            lng: this.longitude
+          }
+        })
+          .then(marker => {
+            marker.on(GoogleMapsEvent.MARKER_CLICK)
+              .subscribe(() => {
+                alert('clicked');
+              });
+          });
       });
   }
 }

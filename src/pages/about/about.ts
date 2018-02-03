@@ -9,7 +9,7 @@ import {
 } from '@ionic-native/google-maps';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import * as MAP_STYLES from '../../map/maps.json';
+import { MAP_STYLES } from '../../app/maps/maps';
 
 @Component({
   selector: 'page-about',
